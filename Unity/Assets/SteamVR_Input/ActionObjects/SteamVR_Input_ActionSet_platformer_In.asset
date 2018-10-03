@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b950fcc300ce6c479bdb3f77b94da65, type: 3}
+  m_Name: SteamVR_Input_ActionSet_platformer_In
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
+  listDirection: 0
+  actions:
+  - {fileID: 11400000, guid: 2ab65a403ea88b94b878c65e2b83acc2, type: 2}
+  - {fileID: 11400000, guid: 2d17e579591acf24a80d633b394924f5, type: 2}
+  Jump: {fileID: 11400000, guid: 2ab65a403ea88b94b878c65e2b83acc2, type: 2}
+  Movement: {fileID: 11400000, guid: 2d17e579591acf24a80d633b394924f5, type: 2}

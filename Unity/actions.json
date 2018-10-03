@@ -36,16 +36,20 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/NewAction",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
     {
-      "name": "/actions/platformer/in/Move",
-      "type": "vector2"
-    },
-    {
       "name": "/actions/platformer/in/Jump",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/platformer/in/Movement",
+      "type": "vector2"
     },
     {
       "name": "/actions/buggy/in/Steering",
