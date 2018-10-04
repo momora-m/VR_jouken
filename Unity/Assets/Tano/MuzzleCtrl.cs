@@ -9,7 +9,6 @@ public class MuzzleCtrl : MonoBehaviour
 
     [System.NonSerialized] public float initialVelocity;
 
-    Quaternion bulletRotation = new Quaternion(0, 0, 0, 0);
     GameObject createdBullet;
     BulletCtrl bulletCtrl;
 
@@ -25,7 +24,7 @@ public class MuzzleCtrl : MonoBehaviour
 
 
         //弾を作成
-        createdBullet = Instantiate(bullet, transform.position, bulletRotation);
+        createdBullet = Instantiate(bullet, transform.position, transform.rotation);
         //弾にデータを与える
         bulletCtrl = createdBullet.GetComponent<BulletCtrl>();
         createdBullet.GetComponent<Rigidbody>().AddForce(createdBullet.transform.forward * initialVelocity, ForceMode.VelocityChange);

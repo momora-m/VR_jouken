@@ -1,31 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
+
 
 public class GunBase : MonoBehaviour
 {
+    //VR関連
+    public SteamVR_Action_Boolean FireButton;
 
-    [SerializeField]
-    protected AudioClip shotSe;
-    [SerializeField] protected MuzzleCtrl muzleCtrl;
-    [SerializeField] protected float initialVelocity;
-    protected AudioSource audioSource;
-    [System.NonSerialized] private static bool safety = false;
+    public SteamVR_Input_Sources thisHand;
+    private Interactable interactable;
+
+    //銃関連
+    [SerializeField] AudioClip shotSe;
+    [SerializeField] MuzzleCtrl muzleCtrl;
+    [SerializeField] float initialVelocity;
+    AudioSource audioSource;
+    public static bool safety = false;
+
+
+
 
     //protected CharacterController rootCharacterController;
-
-    public static bool Safety
-    {
-        get
-        {
-            return safety;
-        }
-
-        set
-        {
-            safety = value;
-        }
-    }
 
     protected void Awake()
     {
@@ -36,12 +34,25 @@ public class GunBase : MonoBehaviour
     protected virtual void Start()
     {
         muzleCtrl.initialVelocity = initialVelocity;
+
+        interactable = GetComponent<Interactable>();
+        //interactable.activateActionSetOnAttach = actionSet;
     }
 
     //will be private
     protected virtual void Update()
     {
+        //握られていたら
+        if (interactable.attachedToHand)
+        {
+            //thisHandに現在握っている手を代入
+            thisHand = interactable.attachedToHand.handType;
 
+            if (FireButton.GetStateDown(thisHand))
+            {
+                Fire();
+            }
+        }
     }
 
     protected void Fire()
@@ -50,7 +61,6 @@ public class GunBase : MonoBehaviour
         {
             return;
         }
-
 
         bulletShoot();
 
