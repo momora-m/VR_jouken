@@ -313,6 +313,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\MovingGun.cs" />
+    <Compile Include="Assets\Scripts\TanoTest.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestThrow.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestTrackedCamera.cs" />
@@ -480,7 +482,6 @@
     <Compile Include="Assets\Tano\BulletCtrl.cs" />
     <Compile Include="Assets\Tano\GunBase.cs" />
     <Compile Include="Assets\Tano\MuzzleCtrl.cs" />
-    <Compile Include="Assets\TanoTest.cs" />
     <Compile Include="Assets\VRTK\Examples\ExampleResources\Scripts\Archery\Arrow.cs" />
     <Compile Include="Assets\VRTK\Examples\ExampleResources\Scripts\Archery\ArrowNotch.cs" />
     <Compile Include="Assets\VRTK\Examples\ExampleResources\Scripts\Archery\ArrowSpawner.cs" />
