@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletCtrl : MonoBehaviour {
-    [SerializeField] GameObject hitParticle;
-    [SerializeField] GameObject DestroyParticle;
+    //[SerializeField] GameObject hitParticle;
+    //[SerializeField] GameObject DestroyParticle;
     [SerializeField] int lifeTime;
     [SerializeField] int BoundableCount; 
     [SerializeField] string[] targetTags;
@@ -30,6 +30,7 @@ public class BulletCtrl : MonoBehaviour {
 
     void BulletDestruction(bool isHit)
     {
+        /*
         if(isHit)
         {
             Instantiate(hitParticle, transform.position, transform.rotation);
@@ -38,6 +39,7 @@ public class BulletCtrl : MonoBehaviour {
         {
             Instantiate(DestroyParticle, transform.position, transform.rotation);
         }
+        */
         Destroy(gameObject);
     }
 
