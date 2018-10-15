@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnCtrl : MonoBehaviour {
     [SerializeField] Spawner[] spawners;
     bool[] isAlives;
-
+    bool isStartRespawn = false;  //New
 
 	// Use this for initialization
 	void Start () {
@@ -17,16 +17,51 @@ public class SpawnCtrl : MonoBehaviour {
     public void Respawn()
     {
         int spawnNumber;
-        while (true)
+        while (isStartRespawn)
         {
             spawnNumber = Random.Range(0, spawners.GetLength(0) );
             if (!spawners[spawnNumber].isAlive)
             {
+                Debug.Log("respawn_"+spawnNumber);
                 spawners[spawnNumber].Spawn();
                 break;
             }
         }
     }
+
+    public void Despawn()
+    {
+        int spawnNumber;
+        while (true)
+        {
+            spawnNumber = Random.Range(0, spawners.GetLength(0));
+            if (spawners[spawnNumber].isAlive)
+            {
+                Debug.Log("despawn_" + spawnNumber);
+                spawners[spawnNumber].Despawn();
+                break;
+            }
+        }
+    }
+
+    public void StartRespawn()   //New
+    {
+        Debug.Log("リスポーンが開始されます");
+        isStartRespawn = true;
+        Respawn();
+        Respawn();
+    }
+
+    
+
+    public void FinishRespawn()
+    {
+        Debug.Log("TGTのリスポーンが終了しました");
+        isStartRespawn = false;
+        Despawn();
+        Despawn();
+    }
+    
 }
 /*
 [System.Serializable]

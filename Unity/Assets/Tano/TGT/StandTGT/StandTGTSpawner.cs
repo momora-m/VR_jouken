@@ -29,4 +29,12 @@ public class StandTGTSpawner : Spawner {
         TGTwithPillarAnimation.Play("Respawn");
     }
 
+    //New
+     override public void Despawn ()
+    {
+        TGTboxcollider.enabled = false;
+        isAlive = false;
+        TGTwithPillarAnimation.Play("death");
+    }
+
 }

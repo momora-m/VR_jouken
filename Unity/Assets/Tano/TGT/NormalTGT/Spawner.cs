@@ -21,6 +21,13 @@ public class Spawner : MonoBehaviour {
         GameObject obj =  Instantiate(spawnObject, transform.position, transform.rotation);
         obj.transform.parent = gameObject.transform;
 	}
+
+    virtual public void Despawn ()
+    {
+        isAlive = false;
+        Destroy(transform.GetChild(0).gameObject);
+    }
+
     virtual public void Hit()
     {
         willDeath = true;

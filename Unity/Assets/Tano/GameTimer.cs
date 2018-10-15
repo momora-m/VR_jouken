@@ -48,13 +48,14 @@ public class GameTimer : MonoBehaviour
 
     public void timerTrigger()
     {
-        
+        timerReset();
         isTimerWorking = true;
     }
 
     public void timerReset()
     {
         remain_sec = initial_remain_sec;
+        timerText.color = Color.black;
     }
 
     void emargencyMode()

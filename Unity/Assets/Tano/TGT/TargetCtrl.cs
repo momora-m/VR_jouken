@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetCtrl : MonoBehaviour {
 
     public SpawnCtrl spawnCtrl;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -30,4 +31,10 @@ public class TargetCtrl : MonoBehaviour {
             transform.parent.parent.GetComponent<Spawner>().Hit();
         }
     }
+
+  
+        
+
+    
+
 }

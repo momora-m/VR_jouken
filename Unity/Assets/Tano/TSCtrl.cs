@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TSCtrl : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    [SerializeField] CountDownCtrl countDownCtrl;
+    [SerializeField] Spawner spawner;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -16,6 +17,17 @@ public class TSCtrl : MonoBehaviour {
 
     public void GameStarter()
     {
-
+        countDownCtrl.CountDownStart();
     }
+
+    public void Respawn()
+    {
+        if (!spawner.isAlive)
+        {
+            spawner.Spawn();
+            spawner.gameObject.GetComponentInChildren<Destroyable>().whenHit.AddListener(GameStarter);
+        }
+        
+    }
+
 }
