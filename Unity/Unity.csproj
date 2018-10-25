@@ -313,6 +313,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HighScoreSystem\HighScoreBoard.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestThrow.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestTrackedCamera.cs" />
@@ -477,17 +478,21 @@
     <Compile Include="Assets\SteamVR_Input\ActionObjects\SteamVR_Input_ActionSet_platformer_In.cs" />
     <Compile Include="Assets\SteamVR_Input\SteamVR_Input_Actions.cs" />
     <Compile Include="Assets\SteamVR_Input\SteamVR_Input_ActionSets.cs" />
-    <Compile Include="Assets\Tano\BulletCtrl.cs" />
-    <Compile Include="Assets\Tano\CountDownCtrl.cs" />
-    <Compile Include="Assets\Tano\Destroyable.cs" />
-    <Compile Include="Assets\Tano\GameTimer.cs" />
-    <Compile Include="Assets\Tano\GunBase.cs" />
-    <Compile Include="Assets\Tano\MuzzleCtrl.cs" />
-    <Compile Include="Assets\Tano\SpawnCtrl.cs" />
-    <Compile Include="Assets\Tano\TGT\NormalTGT\Spawner.cs" />
-    <Compile Include="Assets\Tano\TGT\StandTGT\StandTGTSpawner.cs" />
-    <Compile Include="Assets\Tano\TGT\TargetCtrl.cs" />
-    <Compile Include="Assets\Tano\TSCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\BulletCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\CountDownCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\Destroyable.cs" />
+    <Compile Include="Assets\Tano\Scripts\GameTimer.cs" />
+    <Compile Include="Assets\Tano\Scripts\GunBase.cs" />
+    <Compile Include="Assets\Tano\Scripts\LaserPointer.cs" />
+    <Compile Include="Assets\Tano\Scripts\MuzzleCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\Scorerable.cs" />
+    <Compile Include="Assets\Tano\Scripts\ScoreUICtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\shellCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\SpawnCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Tano\Scripts\StandTGTSpawner.cs" />
+    <Compile Include="Assets\Tano\Scripts\TargetCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\TSCtrl.cs" />
     <Compile Include="Assets\TanoTest.cs" />
     <Compile Include="Assets\VRTK\Examples\ExampleResources\Scripts\Archery\Arrow.cs" />
     <Compile Include="Assets\VRTK\Examples\ExampleResources\Scripts\Archery\ArrowNotch.cs" />
