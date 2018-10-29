@@ -31,6 +31,7 @@ public class HighScoreBoard : MonoBehaviour {
 	public InputField field;
 	// Use this for initialization
 	void Start () {
+        
 		ScoreBoard = GetComponent<Text> ();
 	
 		field = GameObject.Find ("InputField").GetComponent<InputField> ();
@@ -121,12 +122,16 @@ public class HighScoreBoard : MonoBehaviour {
 			//AskRankerName ();
 			//RankerNames [count - 1] = name_now;
 			SaveScore ();
-		
-		}
+            field.gameObject.SetActive(true);
+            field.text = "";
+            //追加 10/27 13:13
+            field.ActivateInputField();
+
+        }
 
 		UpdateScoreBoard ();
-		field.gameObject.SetActive (true);
-		field.text = "";
+
+        //追加終わり
 
 	}
 	public void Input_test() {
@@ -144,7 +149,11 @@ public class HighScoreBoard : MonoBehaviour {
 	}
 
 	public void WhenEndInputName() {//外部のinputfieldからこの関数をよびだす。
-		
+
+        if (field.text=="")
+        {
+            field.text=("いきりと");
+        }
 		RankerNames[count - 1] = field.text;
 		field.gameObject.SetActive (false);
 		SaveScore ();

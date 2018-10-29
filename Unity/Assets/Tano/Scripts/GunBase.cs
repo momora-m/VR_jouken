@@ -10,7 +10,7 @@ namespace SimpleShooting
     {
         //VR関連
         public SteamVR_Action_Boolean FireButton;
-        Hand hand;
+        public Hand hand;
 
         private Interactable interactable;
 
@@ -24,6 +24,7 @@ namespace SimpleShooting
         public ushort viveFrame = 20;
 
         AudioSource audioSource;
+        Animator animator;
 
         //static
         public static bool safety = false;
@@ -39,6 +40,7 @@ namespace SimpleShooting
         protected virtual void Start()
         {
             muzleCtrl.initialVelocity = initialVelocity;
+            animator = GetComponent<Animator>();
 
             interactable = GetComponent<Interactable>();
             //interactable.activateActionSetOnAttach = actionSet;
@@ -47,6 +49,8 @@ namespace SimpleShooting
         //will be private
         protected virtual void Update()
         {
+
+            
             //握られていたら
             if (interactable.attachedToHand)
             {
@@ -58,6 +62,12 @@ namespace SimpleShooting
                 {
                     Fire();
                 }
+            }
+            
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fire();
             }
         }
 
@@ -71,6 +81,11 @@ namespace SimpleShooting
             bulletShoot();
             audioSource.PlayOneShot(shotSe);
             StartCoroutine("Vibration");
+
+            if (animator)
+            {
+                animator.SetTrigger("Fire");
+            }
 
             if (bulletShell)
             {
@@ -95,7 +110,20 @@ namespace SimpleShooting
             float xrForceRand = Random.Range(-90, 90);
             float zrForceRand = Random.Range(-180, 180);
 
-            Vector3 ActualShellEjectVelocity = new Vector3(xForceRand + shellEjectVector.x, yForceRand + shellEjectVector.z,0);
+
+            int direction;
+
+            if(hand.gameObject.name == "RightHand")
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
+            Vector3 ActualShellEjectVelocity = new Vector3( (xForceRand + shellEjectVector.x) * direction , yForceRand + shellEjectVector.z,0);
+
             shellRigidbody.GetComponent<Rigidbody>().AddRelativeForce( ActualShellEjectVelocity, ForceMode.VelocityChange);
             shellRigidbody.GetComponent<Rigidbody>().AddRelativeTorque( xrForceRand, 0, zrForceRand);
         }
@@ -104,8 +132,10 @@ namespace SimpleShooting
         {
             for (int i = viveFrame; i > 0; i--)
             {
+                
                 hand.TriggerHapticPulse((ushort)((4000 / viveFrame) * i)); //0-3999
                 yield return null;
+                
             }
         }
     

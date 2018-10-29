@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1550015383214390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 1.09, z: 4.89}
+  m_LocalPosition: {x: -0.01, y: 1.09, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4193347998346394}
@@ -850,11 +850,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireButton: {fileID: 11400000, guid: cfa15839d2abf9047b0877213f1633ba, type: 2}
-  viveFrame: 20
-  hand: {fileID: 0}
-  shotSe: {fileID: 8300000, guid: 66699e002381beb46af320d605d1a8ef, type: 3}
-  muzleCtrl: {fileID: 114522381876193742}
-  initialVelocity: 100
   bulletShell: {fileID: 1747859339001464, guid: da49803aae81cec48b33c4e356cda3cc,
     type: 2}
+  shotSe: {fileID: 8300000, guid: 66699e002381beb46af320d605d1a8ef, type: 3}
+  muzleCtrl: {fileID: 114522381876193742}
   shellEjectTransform: {fileID: 4551338865794980}
+  shellEjectVector: {x: 1, y: 0, z: 1}
+  initialVelocity: 100
+  viveFrame: 20

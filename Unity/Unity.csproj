@@ -482,7 +482,9 @@
     <Compile Include="Assets\Tano\Scripts\CountDownCtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\Destroyable.cs" />
     <Compile Include="Assets\Tano\Scripts\GameTimer.cs" />
+    <Compile Include="Assets\Tano\Scripts\Grappable.cs" />
     <Compile Include="Assets\Tano\Scripts\GunBase.cs" />
+    <Compile Include="Assets\Tano\Scripts\InteractableGun.cs" />
     <Compile Include="Assets\Tano\Scripts\LaserPointer.cs" />
     <Compile Include="Assets\Tano\Scripts\MuzzleCtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\Scorerable.cs" />
