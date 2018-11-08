@@ -23,6 +23,8 @@ public class HighScoreBoard : MonoBehaviour {
 
 	public string[] RankerNames = new string[10];
 
+    public  bool rank_out = true;
+
 	//int c = 0;
 
 	private bool IsFinishedInputName = false;
@@ -31,12 +33,15 @@ public class HighScoreBoard : MonoBehaviour {
 	public InputField field;
 	// Use this for initialization
 	void Start () {
-        
-		ScoreBoard = GetComponent<Text> ();
+
+        ScoreBoard = GetComponent<Text> ();
+       
 	
 		field = GameObject.Find ("InputField").GetComponent<InputField> ();
+        //Resetscore();
 		field.gameObject.SetActive (false);
-		if (PlayerPrefs.GetInt (IsfirstPlay, -1) == -1) {
+
+        if (PlayerPrefs.GetInt (IsfirstPlay, -1) == -1) {
 			Debug.Log ("初回起動です");
 			Resetscore ();
 			PlayerPrefs.SetInt (IsfirstPlay, 10);
@@ -56,14 +61,20 @@ public class HighScoreBoard : MonoBehaviour {
 		string[] Ranks = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th"};
 
 		for (int i = 0; i < 10; i++) {
-			//string score = Scores [i].ToString ().ToUpper ();
-			str += Ranks [i] + "　" + RankerNames [i] + "　" +  Scores[i].ToString () + "\n";
+            //string score = Scores [i].ToString ().ToUpper ();
+            if (i==0)
+            {
+                str +="<size=16><b>" + Ranks[i] + "　" + RankerNames[i] + "　" + Scores[i].ToString() + "\n"+"</b></size>";
+            }
+
+			else str += Ranks [i] + "　" + RankerNames [i] + "　" +  Scores[i].ToString () + "\n";
 		}
 		Debug.Log ("スコア反映");
 		ScoreBoard.text = str;
 
 	}
 
+    [ContextMenu("RankingReset")]
 	public void Resetscore() {
 		PlayerPrefs.DeleteAll ();
 		field.gameObject.SetActive (false);
@@ -92,46 +103,59 @@ public class HighScoreBoard : MonoBehaviour {
 	}
 
 
-	public void SendHighScore (int value) {
+	public int  SendHighScore (int value) {
 
 		Debug.Log ("値" + value + "が送られました");
 		field.gameObject.SetActive (false);
 		count = 10;
-		if (value > Scores [9]) {
-			Debug.Log ("ハイスコアが更新されます");
-			Scores [9] = value;
-			Debug.Log ("Score[9] = " + Scores [9]);
-			RankerNames [9] = "あなた";
+        rank_out = true;
+        if (value > Scores[9])
+        {
+            rank_out = false;
+            Debug.Log("ハイスコアが更新されます");
+            Scores[9] = value;
+            Debug.Log("Score[9] = " + Scores[9]);
+            RankerNames[9] = "名無しのガンナー";
 
-			for (int i = 9; i > 0; i--) {
-				if (Scores [i] > Scores [i - 1]) {
-					int tmp = Scores [i];
-					Scores [i] = Scores [i - 1];
-					Scores [i - 1] = tmp;
+            for (int i = 9; i > 0; i--)
+            {
+                if (Scores[i] > Scores[i - 1])
+                {
+                    int tmp = Scores[i];
+                    Scores[i] = Scores[i - 1];
+                    Scores[i - 1] = tmp;
 
-					string str = RankerNames [i];
-					RankerNames [i] = RankerNames [i - 1];
-					RankerNames [i - 1] = str;
+                    string str = RankerNames[i];
+                    RankerNames[i] = RankerNames[i - 1];
+                    RankerNames[i - 1] = str;
 
-					count--;
+                    count--;
 
-				}
-					
+                }
 
-			}
-			//AskRankerName ();
-			//RankerNames [count - 1] = name_now;
-			SaveScore ();
+
+            }
+            //AskRankerName ();
+            //RankerNames [count - 1] = name_now;
+            SaveScore();
             field.gameObject.SetActive(true);
             field.text = "";
             //追加 10/27 13:13
             field.ActivateInputField();
 
         }
+        
 
 		UpdateScoreBoard ();
 
-        //追加終わり
+       if(rank_out)
+        {
+            return -1;
+        }
+       else
+        {
+            return count;
+        }
 
 	}
 	public void Input_test() {
@@ -152,12 +176,19 @@ public class HighScoreBoard : MonoBehaviour {
 
         if (field.text=="")
         {
-            field.text=("いきりと");
+            field.text=("名無しのガンナー");
         }
+       
+        
 		RankerNames[count - 1] = field.text;
 		field.gameObject.SetActive (false);
 		SaveScore ();
 		UpdateScoreBoard ();
 	}
+
+    
+       
+  
+    
 		
 }

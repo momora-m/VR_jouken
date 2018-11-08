@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SimpleShooting
 {
     public class BulletCtrl : MonoBehaviour {
-        //[SerializeField] GameObject hitParticle;
+        [SerializeField] GameObject hitParticle;
         //[SerializeField] GameObject DestroyParticle;
         [SerializeField] float lifeTime;
         [SerializeField] int BoundableCount; 
@@ -17,32 +17,35 @@ namespace SimpleShooting
             Destroy(gameObject, lifeTime);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if(Hittable(collision.gameObject.tag))
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if(Hittable(other.gameObject.tag))
             {
-                collision.gameObject.SendMessage("Hit");
+                other.gameObject.SendMessage("Hit");
                 BulletDestruction(true);
                 hitted = true;
                 return;
             }
 
-            BoundableCount--;
             BoundableCountCheck();
         }
 
         void BulletDestruction(bool isHit)
         {
-            /*
+            
             if(isHit)
             {
                 Instantiate(hitParticle, transform.position, transform.rotation);
             }
             else
             {
-                Instantiate(DestroyParticle, transform.position, transform.rotation);
+                //Instantiate(DestroyParticle, transform.position, transform.rotation);
             }
-            */
+            
             Destroy(gameObject);
         }
 

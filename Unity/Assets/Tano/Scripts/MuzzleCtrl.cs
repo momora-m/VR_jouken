@@ -17,7 +17,10 @@ namespace SimpleShooting
         public void Fire()
         {
             //パーティクルのオブジェクト作成
-            //Instantiate(FireParticle, transform.position, transform.rotation, transform);
+            if(0 == 0)
+            {
+                Instantiate(FireParticle, transform.position, transform.rotation, transform);
+            }
 
 
             //弾を作成

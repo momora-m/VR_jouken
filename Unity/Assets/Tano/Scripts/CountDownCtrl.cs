@@ -17,15 +17,17 @@ namespace SimpleShooting
         float remain_sec;
 
         AudioSource audioSource;
-        Animation animation;
+        Animation UIanimation;
         TSCtrl tsCtrl;
         Text countDownText;
+        [SerializeField] ResultCtrl resultCtrl;
 
         // Use this for initialization
         void Start() {
             audioSource = GetComponent<AudioSource>();
-            animation = GetComponent<Animation>();
+            UIanimation = GetComponent<Animation>();
             tsCtrl = GameObject.Find("GameMaster").GetComponent<TSCtrl>();
+            //resultCtrl = GameObject.Find("ResultCanvas").GetComponent<ResultCtrl>();
             countDownText = GetComponent<Text>();
             countDownText.text = "";
         }
@@ -48,7 +50,7 @@ namespace SimpleShooting
 
         public void CountDownStart()
         {
-            animation.Play("CountDown");
+            UIanimation.Play("CountDown");
         }
 
         public void CountDownAction(int Num)
@@ -83,7 +85,7 @@ namespace SimpleShooting
         public void CoolDownOver()
         {
             isCoolDownWorking = false;
-            tsCtrl.GameOverCoolDownEnd();
+            resultCtrl.ShowResult();
             countDownText.text = "";
         }
 

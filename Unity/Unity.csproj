@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2018.2.10f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -478,6 +480,8 @@
     <Compile Include="Assets\SteamVR_Input\ActionObjects\SteamVR_Input_ActionSet_platformer_In.cs" />
     <Compile Include="Assets\SteamVR_Input\SteamVR_Input_Actions.cs" />
     <Compile Include="Assets\SteamVR_Input\SteamVR_Input_ActionSets.cs" />
+    <Compile Include="Assets\Tano\Particle\Script\HitParticleCtrl.cs" />
+    <Compile Include="Assets\Tano\Particle\Script\ParticleDestroyer.cs" />
     <Compile Include="Assets\Tano\Scripts\BulletCtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\CountDownCtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\Destroyable.cs" />
@@ -486,7 +490,10 @@
     <Compile Include="Assets\Tano\Scripts\GunBase.cs" />
     <Compile Include="Assets\Tano\Scripts\InteractableGun.cs" />
     <Compile Include="Assets\Tano\Scripts\LaserPointer.cs" />
+    <Compile Include="Assets\Tano\Scripts\MachineGun.cs" />
     <Compile Include="Assets\Tano\Scripts\MuzzleCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\PlayerOffsetCtrl.cs" />
+    <Compile Include="Assets\Tano\Scripts\ResultCtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\Scorerable.cs" />
     <Compile Include="Assets\Tano\Scripts\ScoreUICtrl.cs" />
     <Compile Include="Assets\Tano\Scripts\shellCtrl.cs" />
@@ -771,6 +778,9 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
+    <None Include="Assets\Tano\Particle\ParticleSample\Shaders\PriorityParticleAdd.shader" />
+    <None Include="Assets\Tano\Particle\ParticleSample\Shaders\PriorityParticleAddSoft.shader" />
+    <None Include="Assets\Tano\Particle\ParticleSample\Shaders\PriorityParticleAlpha.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

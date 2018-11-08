@@ -8,8 +8,11 @@ namespace SimpleShooting
     public class ScoreUICtrl : MonoBehaviour {
         public int score;
         public int combo;
+        public int hitCount;
+        public int missCount;
+        public int maxCombo;
         public float multipler = 1;
-        public HighScoreBoard board;
+        //public HighScoreBoard board;
 
         Text scoreText;
         Text multiplerText;
@@ -34,6 +37,7 @@ namespace SimpleShooting
         public void GainScore(int addScore)
         {
             //コンボ処理
+            hitCount++;
             combo ++;
             comboUIAnimation.Stop();
             comboUIAnimation.Play("ComboIncrease");
@@ -42,6 +46,10 @@ namespace SimpleShooting
             {
                 multiplerIncrease();
             } 
+            if(maxCombo < combo)
+            {
+                maxCombo = combo;
+            }
 
             //スコア処理
             score += (int)(addScore * multipler);
@@ -50,6 +58,8 @@ namespace SimpleShooting
 
         public void ResetCombo()
         {
+            missCount++;
+
             combo = 0;
             comboText.text = "";
 
@@ -60,12 +70,26 @@ namespace SimpleShooting
         public void ResetScore()
         {
             //ここにハイスコア送信
-            board.SendHighScore(score);
+            //board.SendHighScore(score);
 
             score = 0;
             scoreText.text = score.ToString("d6");
 
             ResetCombo();
+
+            hitCount = 0;
+            missCount = 0;
+            maxCombo = 0;
+        }
+
+        public void HideScore()
+        {
+            scoreText.color = new Color(0, 0, 0, 0);
+        }
+
+        public void ShowScore()
+        {
+            scoreText.color = new Color(0, 0, 0, 1);
         }
 
     }

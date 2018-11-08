@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserPointer : MonoBehaviour {
+    public float baseScale;
+    public float scaleParRange;
+
     LineRenderer lineRenderer;
     MeshRenderer meshRenderer;
 	// Use this for initialization
@@ -14,12 +17,13 @@ public class LaserPointer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         RaycastHit hit;
-        lineRenderer.SetPosition(1, new Vector3(0,100000,0));
+        //lineRenderer.SetPosition(1, new Vector3(0,100,0));
 
         if(Physics.Raycast(transform.position,transform.transform.up,out hit, Mathf.Infinity))
         {
             meshRenderer.enabled = true;
             meshRenderer.transform.position = hit.point;
+            //meshRenderer.transform.localScale = new Vector3 (baseScale + transform.localPosition.x * scaleParRange, baseScale + transform.localPosition.y * scaleParRange, baseScale + transform.localPosition.z * scaleParRange);
         }
         else
         {

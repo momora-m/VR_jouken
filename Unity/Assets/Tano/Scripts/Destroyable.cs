@@ -8,6 +8,7 @@ namespace SimpleShooting
     public class Destroyable : MonoBehaviour {
 
         public UnityEvent whenHit;
+        public bool isDestroyable = true;
 
 	    // Use this for initialization
 	    void Start () {
@@ -22,7 +23,10 @@ namespace SimpleShooting
         public void Hit()
         {
             whenHit.Invoke();
-            Destroy(gameObject,0.05f);
+            if (isDestroyable)
+            {
+                Destroy(gameObject,0.05f);
+            }
         }
 
     }

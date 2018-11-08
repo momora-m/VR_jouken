@@ -20,7 +20,7 @@ namespace SimpleShooting
         public void Respawn()
         {
             int spawnNumber;
-            while (isWorkingRespawn)
+            for (int i=0; isWorkingRespawn && i < 1000; i++)
             {
                 spawnNumber = Random.Range(0, spawners.GetLength(0) );
                 if (!spawners[spawnNumber].isAlive)
@@ -35,12 +35,12 @@ namespace SimpleShooting
         public void Despawn()
         {
             int spawnNumber;
-            while (true)
+            for (int i = 0; i<1000; i++)
             {
                 spawnNumber = Random.Range(0, spawners.GetLength(0));
                 if (spawners[spawnNumber].isAlive)
                 {
-                    Debug.Log("despawn_" + spawnNumber);
+                    //Debug.Log("despawn_" + spawnNumber);
                     spawners[spawnNumber].Despawn();
                     break;
                 }
@@ -49,7 +49,7 @@ namespace SimpleShooting
 
         public void StartRespawn()   //New
         {
-            Debug.Log("リスポーンが開始されます");
+            //Debug.Log("リスポーンが開始されます");
             isWorkingRespawn = true;
             Respawn();
             Respawn();
@@ -57,7 +57,7 @@ namespace SimpleShooting
 
         public void FinishRespawn()
         {
-            Debug.Log("TGTのリスポーンが終了しました");
+            //Debug.Log("TGTのリスポーンが終了しました");
             isWorkingRespawn = false;
             Despawn();
             Despawn();

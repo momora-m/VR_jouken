@@ -5,7 +5,7 @@ using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 namespace SimpleShooting
-{  
+{
     public class Grappable : MonoBehaviour
     {
         [EnumFlags]
@@ -39,7 +39,7 @@ namespace SimpleShooting
 
             if (startingGrabType != GrabTypes.None)
             {
-                hand.AttachObject(gameObject,GrabTypes.Trigger,attachmentFlags,  interactable.handFollowTransform);
+                hand.AttachObject(gameObject, GrabTypes.Trigger, attachmentFlags, interactable.handFollowTransform);
                 hand.HideGrabHint();
             }
         }
@@ -47,15 +47,21 @@ namespace SimpleShooting
         protected virtual void HandAttachedUpdate(Hand hand)
         {
 
-
-            if (GrabButton.GetStateDown(hand.handType) )
+            if (GrabButton.GetStateDown(hand.handType))
             {
                 hand.DetachObject(gameObject, false);
             }
         }
 
+        protected virtual void OnAttachedToHand(Hand hand)
+        {
+            hand.HoverLock(null);
+        }
 
-
+        protected virtual void OnDetachedFromHand(Hand hand)
+        {
+            hand.HoverUnlock(null);
+        }
     }
 }
 

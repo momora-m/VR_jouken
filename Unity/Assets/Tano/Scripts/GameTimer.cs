@@ -13,6 +13,7 @@ namespace SimpleShooting
         public UnityEvent timeoverEV;
         [SerializeField] AudioClip emargencyCountSE;
         [SerializeField] AudioClip timeoverSE;
+        [SerializeField] ScoreUICtrl scoreUICtrl;
 
         float remain_sec;
         float commaTillSE;
@@ -20,6 +21,11 @@ namespace SimpleShooting
 
         Text timerText;
         AudioSource audioSource;
+
+        private void Reset()
+        {
+            GameObject.Find("ScoreCanvas").GetComponent<ScoreUICtrl>();
+        }
 
         // Use this for initialization
         void Start()
@@ -66,6 +72,7 @@ namespace SimpleShooting
         void emargencyMode()
         {
             timerText.color = Color.red;
+            scoreUICtrl.HideScore();
         }
 
         void emargencyCount()
@@ -88,6 +95,7 @@ namespace SimpleShooting
 
         public void timerReset()
         {
+            isTimerWorking = false;
             commaTillSE = 0;
             remain_sec = initial_remain_sec;
             timerText.text = remain_sec.ToString("F2");

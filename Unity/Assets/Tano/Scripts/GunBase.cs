@@ -12,24 +12,33 @@ namespace SimpleShooting
         public SteamVR_Action_Boolean FireButton;
         public Hand hand;
 
-        private Interactable interactable;
+        protected Interactable interactable;
 
-        [SerializeField] GameObject bulletShell;
-        [SerializeField] AudioClip shotSe;
-        [SerializeField] MuzzleCtrl muzleCtrl;
-        [SerializeField] Transform shellEjectTransform;
+        [SerializeField] protected GameObject bulletShell;
+        [SerializeField] protected AudioClip shotSe;
 
-        [SerializeField] Vector3 shellEjectVector = new Vector3(1,0,1);
-        [SerializeField] float initialVelocity;
+        [Space(15)]
+        [SerializeField] protected MuzzleCtrl muzleCtrl;
+        [Space(15)]
+        [SerializeField] protected Transform shellEjectTransform;
+        [SerializeField] protected Vector3 shellEjectVector = new Vector3(1,1,0);
+        [SerializeField] protected Vector3 shellEjectTorque = new Vector3(1, 0, 1);
+
+
+        [Space(15)]
+        [SerializeField] protected float initialVelocity = 300;
+        [Space(15)]
         public ushort viveFrame = 20;
+        [Space(15)]
+        public bool hasBulletLoadWait = false;
+        public float bulletLoadWait;
 
-        AudioSource audioSource;
-        Animator animator;
+        protected AudioSource audioSource;
+        protected Animator animator;
+        protected bool bulletLoaded = true;
 
         //static
         public static bool safety = false;
-
-        //protected CharacterController rootCharacterController;
 
         protected void Awake()
         {
@@ -63,17 +72,16 @@ namespace SimpleShooting
                     Fire();
                 }
             }
-            
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Fire();
-            }
         }
 
         protected void Fire()
         {  
             if (safety)
+            {
+                return;
+            }
+
+            if (!bulletLoaded)
             {
                 return;
             }
@@ -90,6 +98,12 @@ namespace SimpleShooting
             if (bulletShell)
             {
                 shellEject();
+            }
+
+            if (hasBulletLoadWait)
+            {
+                bulletLoaded = false;
+                StartCoroutine(bulletLoading());
             }
         }
 
@@ -122,10 +136,11 @@ namespace SimpleShooting
                 direction = -1;
             }
 
-            Vector3 ActualShellEjectVelocity = new Vector3( (xForceRand + shellEjectVector.x) * direction , yForceRand + shellEjectVector.z,0);
+            Vector3 ActualShellEjectVelocity = new Vector3( (xForceRand + shellEjectVector.x) * direction , yForceRand + shellEjectVector.y,shellEjectVector.z);
+            Vector3 ActualShellEjectTorque = new Vector3(shellEjectTorque.x +xrForceRand, shellEjectTorque.y, shellEjectTorque.z + zrForceRand);
 
             shellRigidbody.GetComponent<Rigidbody>().AddRelativeForce( ActualShellEjectVelocity, ForceMode.VelocityChange);
-            shellRigidbody.GetComponent<Rigidbody>().AddRelativeTorque( xrForceRand, 0, zrForceRand);
+            shellRigidbody.GetComponent<Rigidbody>().AddRelativeTorque(ActualShellEjectTorque);
         }
 
         protected IEnumerator Vibration()
@@ -135,10 +150,14 @@ namespace SimpleShooting
                 
                 hand.TriggerHapticPulse((ushort)((4000 / viveFrame) * i)); //0-3999
                 yield return null;
-                
             }
         }
-    
+
+        protected IEnumerator bulletLoading()
+        {
+            yield return new WaitForSeconds(bulletLoadWait);
+            bulletLoaded = true;
+        }
     }
 
 }

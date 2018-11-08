@@ -41,11 +41,12 @@ namespace SimpleShooting
             countDownCtrl.CoolDownStart();
         }
 
-        public void GameOverCoolDownEnd()
+        public void ResultEnd()
         {
             gameTimer.timerReset();
             scoreUICtrl.ResetScore();
             StarterRespawn();
+            scoreUICtrl.ShowScore();
         }
     }
 }

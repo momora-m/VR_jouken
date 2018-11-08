@@ -289,8 +289,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1, z: 0.3}
+  m_Center: {x: -0.25, y: 0, z: 0}
 --- !u!82 &82864898348178196
 AudioSource:
   m_ObjectHideFlags: 1
@@ -409,15 +409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac83b55345f470b42ad08cead80e5c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakSEs:
-  - {fileID: 8300000, guid: dec7962ae3d79de4bb48415cdcc7f00f, type: 3}
-  - {fileID: 8300000, guid: 2a0bf4085c0a4af49b6110c74cabe92b, type: 3}
-  - {fileID: 8300000, guid: 8e7ac10960e7fd245bac7306e9ba5aa2, type: 3}
-  - {fileID: 8300000, guid: 015e3450b5069464eb17761c00cbe1a6, type: 3}
-  - {fileID: 8300000, guid: 74b20542fed69004498dd96697443133, type: 3}
-  - {fileID: 8300000, guid: f38f0a756afa59e4887132d3cb14f329, type: 3}
-  - {fileID: 8300000, guid: 161cb9a197068984c988113a1b90dd1a, type: 3}
-  - {fileID: 8300000, guid: 059aeceb5a73a794c85546a1fbf90409, type: 3}
   spawnCtrl: {fileID: 0}
 --- !u!114 &114616121416357854
 MonoBehaviour:
